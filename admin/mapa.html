@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>geolocalizacion</title>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="bower_components/google-map/google-map.html">
+  <link rel="import" href="bower_components/google-map/google-map-marker.html">
+  <style>
+    google-map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+<h1>falta instalar bower 04-03-2016
+</h1>
+  <google-map id="mapa" latitude="0" longitude="0" fit-to-markers></google-map>
+  <script>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var marca = document.createElement('google-map-marker');
+        marca.setAttribute('latitude', position.coords.latitude);
+        marca.setAttribute('longitude', position.coords.longitude);
+        marca.setAttribute('title', 'Estás aquí');
+        Polymer.dom(document.getElementById('mapa')).appendChild(marca);
+      });
+    } else {
+      alert("Navegador no compatible con geolocalización")
+    }
+  </script>
+</body>
+</html>
